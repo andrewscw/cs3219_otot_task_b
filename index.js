@@ -1,4 +1,6 @@
 let express = require('express');
+// Setup server port
+var port = process.env.PORT || 5000;
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let app = express();
@@ -23,9 +25,6 @@ if(!db)
     console.log("Error connecting db")
 else
     console.log("Db connected successfully")
-
-// Setup server port
-var port = process.env.PORT || 8080;
 
 // Send message for default URL
 app.get('/', (req, res) => res.send('Hello World with Express'));
