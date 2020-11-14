@@ -11,23 +11,13 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
-//Our parent block
-describe('Posts', () => {
-    beforeEach((done) => { //Before each test we empty the database
-        Post.remove({}, (err) => {
-           done();
-        });
-    });
-});
-
 describe("Posts", () => {
-    
-    beforeEach((done) => { //Before each test we empty the database
+    //Before each test we empty the database
+    beforeEach((done) => { 
         Post.remove({}, (err) => {
            done();
         });
     });
-
     describe("GET /api/posts", () => {
         // Test to get all posts 
         it("should get all posts", (done) => {
