@@ -36,6 +36,8 @@ describe("Posts", () => {
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
+                res.body.should.have.property('status').eql('success');
+                res.body.should.have.property('message').eql('Posts retrieved successfully');
             done();
             });
         });
