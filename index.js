@@ -6,6 +6,7 @@ let mongoose = require('mongoose');
 let app = express();
 
 let apiRoutes = require("./api-routes");
+require('dotenv/config');
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
@@ -14,10 +15,14 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb+srv://root:root@cluster0.oetju.mongodb.net/database0?retryWrites=true&w=majority',
+// if no mongodb atlas, connect to local mongodb
+// mongoose.connect('mongodb://localhost:27017/PostDB',
+mongoose.connect(process.env.DB_CONNECTION || 'mongodb://localhost:27017/PostDB',
     { useNewUrlParser: true,
     useUnifiedTopology: true}
     );
+
+console.log(process.env.DB_CONNECTION)
 var db = mongoose.connection;
 
 // Added check for DB connection
@@ -36,3 +41,5 @@ app.use('/api', apiRoutes);
 app.listen(port, function () {
     console.log("Running RestHub on port " + port);
 });
+
+module.exports = app;

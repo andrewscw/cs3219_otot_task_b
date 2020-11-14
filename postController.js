@@ -1,5 +1,5 @@
 // Import post model
-Post = require('./postModel');
+let Post = require('./postModel');
 
 // Handle index actions
 exports.index = function (req, res) {
@@ -23,12 +23,13 @@ exports.new = function (req, res) {
     var post = new Post();
     post.title = req.body.title;
     post.description = req.body.description;
-// save the post and check for errors
-post.save(function (err) {
-        // if (err)
-        //     res.json(err);
+    // save the post and check for errors
+    post.save(function (err) {
+        if (err)
+            res.json(err);
         res.json({
-            message: 'New post created!',
+            status: "success",
+            message: 'New post created',
             data: post
         });
     });
@@ -40,7 +41,8 @@ exports.view = function (req, res) {
         if (err)
             res.send(err);
         res.json({
-            message: 'Post details loading..',
+            status: "success",
+            message: 'Post retrieved by id successfully',
             data: post
         });
     });
@@ -59,7 +61,8 @@ post.title = req.body.title;
             if (err)
                 res.json(err);
             res.json({
-                message: 'Post Info updated',
+                status: "success",
+                message: 'Post updated',
                 data: post
             });
         });
