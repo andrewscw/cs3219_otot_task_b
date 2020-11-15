@@ -2,10 +2,6 @@ let Post = require('../postModel');
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
-// let mongoose = require("mongoose");
-// let chai = require('chai');
-// let chaiHttp = require('chai-http');
-// let app = require('../index');
 
 // config chai 
 chai.use(chaiHttp);
@@ -102,17 +98,6 @@ describe("Posts", () => {
                 done();
                 });
             })
-            // post.save(() => {
-            //     chai.request(app)
-            //     .post('/api/posts')
-            //     .end((err, res) => {
-            //         res.should.have.status(200);
-            //         res.body.should.be.a('object');
-            //         res.body.should.have.property('status').eql('success');
-            //         res.body.should.have.property('message').eql('Post updated');
-            //     done();
-            //     });
-            // })
         });
     })
 })
