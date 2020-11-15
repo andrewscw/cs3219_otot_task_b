@@ -4,11 +4,13 @@ var port = process.env.PORT || 5000;
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let app = express();
+let cors = require('cors');
 
 let apiRoutes = require("./api-routes");
 require('dotenv/config');
 
 // Configure bodyparser to handle post requests
+app.use(cors())
 app.use(bodyParser.urlencoded({
     extended: true
 }));
